@@ -40,19 +40,19 @@ class CurrencyApp(QWidget, Ui_Form):
         self.round_checkbox = QCheckBox("მრგვალი შედეგი")
         self.layout().addWidget(self.round_checkbox)
 
-        # Add QListView to display recent conversions
+
         self.list_view = QListView()
         self.conversion_model = QStringListModel()
         self.conversion_history = []
         self.list_view.setModel(self.conversion_model)
         self.layout().addWidget(self.list_view)
 
-        # Add QTimer to update time in QLabel
+
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_time)
-        self.timer.start(1000)  # Update every second
+        self.timer.start(1000)
 
-        self.time_label = self.result_label  # reuse the QLabel
+        self.time_label = self.result_label
         self.update_time()
 
 
@@ -94,7 +94,7 @@ class CurrencyApp(QWidget, Ui_Form):
             self.result_label.setText(result_text)
 
             self.conversion_history.append(result_text)
-            self.conversion_model.setStringList(self.conversion_history[-5:])  # Last 5 entries
+            self.conversion_model.setStringList(self.conversion_history[-5:])
 
         except ValueError:
             QMessageBox.warning(self, "შეცდომა", "გთხოვთ შეიყვანეთ რიცხვი.")
